@@ -1,0 +1,13 @@
+const validationMiddleware = (req, res, next) => {
+    const { title, description, priority, assignee } = req.body;
+    
+    if (!title || !description || !priority || !assignee) {
+        return res.status(400).json({ 
+            error: "Bad Request: 'title', 'description', 'priority' ve 'assignee' alanları zorunludur." 
+        });
+    }
+    
+    next();
+};
+
+module.exports = validationMiddleware;
